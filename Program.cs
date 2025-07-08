@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using TaskTracker.Backend.Repositories;
 
 namespace TaskTracker.Backend
 {
@@ -10,7 +11,6 @@ namespace TaskTracker.Backend
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllers();
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
             string connection = builder.Configuration.GetConnectionString("Database")!;
@@ -18,7 +18,8 @@ namespace TaskTracker.Backend
             System.Console.WriteLine(connection);
 
             builder.Services.AddDbContext<MyDbContext>(options => options.UseNpgsql(connection));
-            builder.Services.AddScoped<UserRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
             var app = builder.Build();
 

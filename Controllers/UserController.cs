@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-
+using TaskTracker.Backend.Repositories;
 
 namespace TaskTracker.Backend.Controllers
 {
@@ -8,8 +8,8 @@ namespace TaskTracker.Backend.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
-        private readonly UserRepository _userRepository;
-        public UserController(ILogger<UserController> logger, UserRepository usertRepository)
+        private readonly IUserRepository _userRepository;
+        public UserController(ILogger<UserController> logger, IUserRepository usertRepository)
         {
             _logger = logger;
             _userRepository = usertRepository;
@@ -28,14 +28,7 @@ namespace TaskTracker.Backend.Controllers
         public async Task<IActionResult> CreateUser([FromBody] User user)
         {
             (bool success, User? newUser) = await _userRepository.CreateUserAsync(user);
-            if (success)
-            {
-                return Created($"api/user/{newUser?.Id}", newUser);
-            }
-            else
-            {
-                return BadRequest();
-            }
+            return success ? Created($"api/user/{newUser?.Id}", newUser) : BadRequest();
         }
 
     }

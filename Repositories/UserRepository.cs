@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 
-public class UserRepository
+namespace TaskTracker.Backend.Repositories;
+
+public class UserRepository : IUserRepository
 {
     private readonly MyDbContext _context;
 
