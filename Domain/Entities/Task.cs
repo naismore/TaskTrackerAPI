@@ -1,4 +1,4 @@
-namespace TaskTracker.Backend.Models;
+namespace Domain.Models;
 
 public class Task
 {

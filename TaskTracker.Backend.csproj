@@ -19,7 +19,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Database\" />
+    <Compile Update="Domain\Class1.cs">
+      <Link>Core\Class1.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Web\appsettings.Development.json" />
+    <_ContentIncludedByDefault Remove="Web\appsettings.json" />
+    <_ContentIncludedByDefault Remove="Web\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="Web\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="Web\obj\Web.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="Web\Properties\launchSettings.json" />
   </ItemGroup>
 
 </Project>
